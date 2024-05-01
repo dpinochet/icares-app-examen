@@ -1,87 +1,59 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+   providedIn: 'root',
 })
 export class ApiService {
-  private apiBaseUrl = 'https://intranet.icares.cl/API';
-  private generateTokenUrl = `${this.apiBaseUrl}/token/generate.php`;
-  private token: string;
+   private apiUrl = 'https://intranet.icares.cl/API';
+   private token: string;
 
-  constructor(private http: HttpClient) { }
+   constructor(private http: HttpClient) {}
 
-  // Método para solicitar un token utilizando las credenciales proporcionadas
-  generateToken(): Observable<string> {
-    const credentials = {
-      username: environment.apiUsername,
-      password: environment.apiPassword
-    };
-
-    return this.http.post<{ document: { access_token: string } }>(this.generateTokenUrl, credentials)
-      .pipe(
-        catchError(error => throwError('Error al generar el token')),
-        switchMap(response => {
-          let token = response.document.access_token;
-          if (token) {
-            this.setToken(token);
-            return token;
-          } else {
-            return throwError('Token no recibido en la respuesta');
-          }
-        })
+   private async getToken(): Promise<void> {
+      const headers = new HttpHeaders().set(
+         'Content-Type',
+         'application/json'
       );
-  }
+      const body = {
+         username: environment.apiUsername,
+         password: environment.apiPassword,
+      };
+      
+      const response = await this.http
+         .post<{ token: string }>(`${this.apiUrl}/token/generate.php`, body, { headers })
+         .toPromise();
+         let respuesta:any = response;
+      this.token = respuesta.document.access_token;
+   }
 
-  // Método para establecer el token
-  setToken(token: string): void {
-    this.token = token;
-  }
-
-  // Método para realizar solicitudes HTTP con el token
-  request(method: string, endpoint: string, body?: any): Observable<any> {
-    const url = `${this.apiBaseUrl}/${endpoint}`;
-    const options: any = {
-      headers: {
-        Authorization: `Bearer ${this.token}`
+   public async makeRequest<T>(endpoint: string): Promise<T> {
+      if (!this.token) {
+         await this.getToken();
       }
-    };
 
-    if (body) {
-      options.body = body;
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+
+      return this.http.get<T>(`${this.apiUrl}${endpoint}`, { headers })
+         .pipe(map(res => res as T))
+         .toPromise();
+   }
+
+   // Nuevo método para leer un solo examen por ID.
+   public async getExamById(id: number): Promise<any> {
+    if (!this.token) {
+       await this.getToken();
     }
 
-    return this.http.request(method, url, options)
-      .pipe(
-        catchError(error => {
-          // Si se recibe un error 401 (Unauthorized), renovar el token y volver a intentar la solicitud
-          if (error.status === 401) {
-            return this.refreshTokenAndRetry(method, endpoint, body);
-          }
-          return throwError(error);
-        })
-      );
-  }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    console.log("El id es: ", id, this.token);
 
-  // Método para renovar el token y volver a intentar la solicitud
-  private refreshTokenAndRetry(method: string, endpoint: string, body?: any): Observable<any> {
-    // Lógica para renovar el token (puedes llamar a tu servicio de autenticación aquí)
-    // En este ejemplo, simplemente generamos un nuevo token usando las credenciales anteriores
-    return this.generateToken().pipe(
-      switchMap(newToken => {
-        // Actualiza el token en el servicio
-        this.setToken(newToken);
-        // Vuelve a intentar la solicitud con el nuevo token
-        return this.request(method, endpoint, body);
-      })
-    );
-  }
-
-  // Método para consultar un examen específico por ID
-  consultaExamen(id: number): Observable<any> {
-    return this.request('GET', `examen/read_one.php?id=${id}`);
-  }
+    return this.http.get<any>(`${this.apiUrl}/examen/read_one.php?id=${id}`, { headers })
+       .pipe(map(res => res as any))
+       .toPromise();
+ }
+   
 }

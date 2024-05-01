@@ -239,4 +239,14 @@
   ion-title.title-large {
     --color: white;
   }
+
+  .alert-wrapper {
+    background-color: #cf3c4f; /* Fondo de la alerta */
+    color: #fff; /* Texto de la alerta */
+}
+
+.alert-button {
+    color: #cf3c4f; /* Color del botón */
+    border: 1px solid #cf3c4f; /* Borde del botón */
+}
 }

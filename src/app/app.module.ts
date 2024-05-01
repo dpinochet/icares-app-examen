@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ApiService } from '../app/servicios/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { AlertaService } from './servicios/alerta.service';
 import { ModalOrderPageModule } from '../app/pages/modal-order/modal-order.module';
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 @NgModule({
@@ -31,7 +31,7 @@ import { OneSignal } from "@ionic-native/onesignal/ngx";
   providers: [
     StatusBar,
     SplashScreen,
-    OneSignal,ApiService,
+    OneSignal,ApiService,AlertaService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

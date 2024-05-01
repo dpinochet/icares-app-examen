@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiService } from '../../servicios/api.service';
+import { AlertaService } from '../../servicios/alerta.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-examen',
@@ -16,8 +18,14 @@ export class ExamenPage implements OnInit {
   slideOpts = {
     slidesPerView: 1.2,
   };
-  constructor(private platform: Platform,
-    private router: Router,private navCtrl: NavController,private apiService: ApiService) {
+  constructor(
+    private platform: Platform,
+    private router: Router,
+    private navCtrl: NavController,
+    private apiService: ApiService,
+    private alertaService: AlertaService,
+    private alertController: AlertController
+  ) {
     if (this.platform.is('ios')) {
       this.plt = 'ios';
     } else {
@@ -27,6 +35,18 @@ export class ExamenPage implements OnInit {
 
   ngOnInit() {
   }
+
+  async mostrarAlerta(mensaje: string, titulo?: string) {
+    const alerta = await this.alertController.create({
+      header: titulo || 'Alerta',
+      message: mensaje,
+      buttons: ['OK'],
+    });
+
+    await alerta.present();
+  }
+
+
   openMenu() {
     this.router.navigate(['product-list']);
   }
@@ -40,16 +60,15 @@ export class ExamenPage implements OnInit {
   }
 
   consultaExamen() {
-    const examenId = this.idOrden; // Reemplaza 1 con el ID del examen que deseas consultar
-    this.apiService.consultaExamen(examenId).subscribe(
-      response => {
-        console.log('Examen consultado:', response);
-        this.examen = response; // Almacena la respuesta en la variable examen
-      },
-      error => {
-        console.error('Error al consultar el examen:', error);
-      }
-    );
+    const examenId = this.idOrden; 
+    this.apiService.getExamById(examenId)
+         .then(exam => {
+            console.log(exam);
+         })
+         .catch(error => {
+            this.mostrarAlerta('Error al cargar el examen', 'Error');
+            console.error(error);
+         });
   }
   
 

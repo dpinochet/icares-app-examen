@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+      
+      <ion-buttons slot="start" class="btn_back">
+        <ion-button (click)="goBack()">
+          <img src="assets/imgs/back2.png">
+        </ion-button>
+      </ion-buttons>
+      <ion-label class="title">Profile</ion-label>
+
+      <ion-buttons class="chat_lbl" class="btn_edit" *ngIf="is_edit == false">
+        <ion-button (click)="edit_profile()">
+          <img src="assets/imgs/edit.png">
+        </ion-button>
+      </ion-buttons>
+
+      <ion-buttons class="chat_lbl" class="btn_edit" *ngIf="is_edit == true">
+        <ion-button (click)="save_profile()">
+          <img src="assets/imgs/true.png">
+        </ion-button>
+      </ion-buttons>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    <div class="user_image" [style.backgroundImage] = "'url(assets/imgs/user.jpg)'"></div>
+    <ion-label class="username">Jonh Doe</ion-label>
+
+    <div class="div_form">
+      <ion-input type="text" class="ip" placeholder="First Name" value="Jonh" [disabled]="!is_edit"></ion-input>
+      <ion-input type="text" class="ip" placeholder="Last Name" value="Doe" [disabled]="!is_edit"></ion-input>
+      <ion-input type="text" class="ip" placeholder="Mobile" value="9807656754" [disabled]="!is_edit"></ion-input>
+      <ion-input type="text" class="ip" placeholder="Email ID" value="john@gmail.com" [disabled]="!is_edit"></ion-input>
+    </div>
+
+  </div>
+</ion-content>

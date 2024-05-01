@@ -1,0 +1,27 @@
+<ion-content>
+  <div class="main_content_div" [class.ios_test]="plt == 'ios'">
+    <div class="upper_div">
+      <img src="assets/imgs/back2.png" class="back_arrow" (click)="goBack()">
+
+      <div class="content_div">
+        <ion-label class="head_lbl">Create Your <br> Account</ion-label>
+        <div class="div_form">
+          <ion-input type="text" class="ip" placeholder="Username"></ion-input>
+          <ion-input type="text" class="ip" placeholder="Email"></ion-input>
+          <ion-input type="text" class="ip" placeholder="Password"></ion-input>
+          <ion-input type="text" class="ip" placeholder="Phone"></ion-input>
+        </div>
+
+        <ion-button (click)="goToHome()" expand="full" shape="round" class="red_btn">
+          Sign Up
+        </ion-button>
+        <ion-label class="small_lbl">By clicking sign up you agree to the our <br> Terms and Conditions</ion-label>
+      </div>
+    </div>
+
+    <div class="lower_div">
+      <ion-label class="bottom_lbl" (click)="goToLogin()">Already an account ? <span class="red_lbl">Login</span></ion-label>
+    </div>
+
+  </div>
+</ion-content>

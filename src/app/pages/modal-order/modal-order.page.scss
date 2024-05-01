@@ -1,0 +1,43 @@
+.ios_test{
+    padding-top: 40px !important;
+}
+.main_content_div{
+    width: 100%;
+    padding-top: 50px;
+    border-top-left-radius: 10px;
+    .check{
+        display: block;
+        width: 150px;
+        margin: auto;
+    }
+    .red_lbl{
+        margin-top: 20px;
+
+        font-family: open-bold;
+        font-size: 22px;
+        display: block;
+        text-align: center;
+        color: var(--ion-color-main);
+    }
+    .small_lbl{
+        margin-top: 20px;
+        font-family: open-regular;
+        display: block;
+        text-align: center;
+        color: var(--ion-color-light);
+    }
+    .red_btn{
+        --background : var(--ion-color-main);
+        height: 40px;
+        --background-activated : var(--ion-color-main);
+        margin-top: 30px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .lbl{
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-family: open-regular;
+    }
+}

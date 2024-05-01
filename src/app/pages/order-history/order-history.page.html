@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+      
+      <ion-buttons slot="start" class="btn_back">
+        <ion-button (click)="goBack()">
+          <img src="assets/imgs/back2.png">
+        </ion-button>
+      </ion-buttons>
+      <ion-label class="title">Order History</ion-label>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+
+    <div class="card" *ngFor="let item of [1,2,3,4,5]">
+      <div class="image_div" [style.backgroundImage]="'url(assets/imgs/image2.jpg)'"></div>
+      <div class="desc_div">
+        <ion-label class="heading_lbl">Super Good Cafe</ion-label>
+        <ion-label class="small_lbl">Cafe - Western Food - $$</ion-label>
+        <ion-icon name="star" class="rating"></ion-icon>
+        <ion-label class="red_lbl"><span class="red_lbl">4.9</span> (124 rating)</ion-label>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

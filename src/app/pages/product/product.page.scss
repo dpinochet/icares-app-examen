@@ -1,0 +1,168 @@
+.ios_test{
+    padding-top: 40px !important;
+}
+.main_content_div{
+    width: 100%;
+    .upper_div{
+        width: 100%;
+        height: 250px;
+        background-color: #FFBAAE;
+        padding: 20px;
+        position: relative;
+
+        .scooter{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .round_lbl{
+            background: white;
+            padding: 10px;
+            border-radius: 25px;
+            background: white;
+            padding: 10px;
+            border-radius: 25px;
+            bottom: 35px;
+            right: 16px;
+            position: absolute;
+        }
+    }
+    .lower_div{
+        width: 100%;
+        background: white;
+        height: 200px;
+        z-index: 99999;
+        margin-top: -20px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 5px;
+        position: absolute;
+
+        .heading_div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .heading_lbl{
+                font-size: 22px;
+                font-family: open-bold;
+                margin-top: 10px;
+                color: var(--ion-color-main);
+            }
+            .heart{
+                font-size: 25px;
+            }
+        }
+
+        .rating_div{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 10px;
+
+            .rating{
+                color: red;
+            }
+            .red_lbl{
+                color: var(--ion-color-main);
+                margin-left: 5px;
+            }
+            .small_lbl{
+                color: var(--ion-color-light) !important;
+            }
+            .top_item{
+                margin-left: 10px;
+            }
+        }
+
+        .slider_div{
+            margin-top: 20px;
+            .heading_lbl{
+                font-size: 22px;
+                font-family: open-bold;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .slide_div{
+                display: flex;
+                flex-direction: column;
+                .img_back{
+                    .slider_img{
+                        width: 85px;
+                        border-radius: 10px;
+                    }
+                }
+                .slider_lbl{
+                    display: block;
+                    font-size: 12px;
+                    font-family: open-regular;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: left;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .card_div{
+            margin-top: 20px;
+            .heading_lbl{
+                font-size: 20px;
+                font-family: open-bold;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                display: block;
+            }
+            .card{
+                width: 100%;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: row;
+                box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+                padding: 20px;
+                justify-content: space-between;
+                position: relative;
+                margin-bottom: 20px;
+
+                .desc_div{
+                    width: 80%;
+                    .product_name{
+                        display: block;
+                    }
+                    .addons{
+                        color: var(--ion-color-light) !important;
+                        // font-size: 12px;
+                    }
+                }
+                .price_div{
+                    .price{
+                       font-weight: bold;
+                    }
+                    .popular{
+                        position: absolute;
+                        display: block;
+                        right: 10px;
+                        bottom: 10px;
+                        color: var(--ion-color-main);;
+                    }
+                }
+            }
+        }
+
+        .red_btn{
+            --background : var(--ion-color-main);
+            height: 40px;
+            --background-activated : var(--ion-color-main);
+            margin-top: 30px;
+            // box-shadow: 0px 6px 15px;
+        }
+       
+    }
+}

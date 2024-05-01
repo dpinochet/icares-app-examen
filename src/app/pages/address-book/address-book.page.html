@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+
+      <ion-buttons slot="start" class="btn_back">
+        <ion-button (click)="goBack()">
+          <img src="assets/imgs/back2.png">
+        </ion-button>
+      </ion-buttons>
+      <ion-label class="title">My Addresses</ion-label>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+
+    <div class="button_div">
+      <ion-button slot="end" size="small" class="add_btn" (click)="goToLogin()">
+        ADD +
+      </ion-button>
+    </div>
+
+    <div class="list_div" *ngFor="let item of [1,2,3,4]">
+      <ion-label class="head_lbl">Work</ion-label>
+      <ion-label class="small_lbl">
+        1152 Hartway Street Hayti SD South Dakota 57241
+      </ion-label>
+
+      <div class="action_div" *ngIf="id == item">
+        <div class="edit">Edit</div>
+        <div class="delete">Delete</div>
+      </div>
+
+      <ion-buttons slot="end" class="btn">
+        <ion-button (click)="clickMenu(item)">
+          <img src="assets/imgs/menu3.png" class="menu_btn">
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </div>
+</ion-content>

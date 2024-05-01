@@ -1,0 +1,130 @@
+// .ios_test{
+//     padding-top: 40px !important;
+// }
+
+ion-toolbar:last-child {
+    --border-width: 0px;
+}
+.header-md:after {
+    background: none;
+}
+.header_div{
+    width: 100%;
+    // height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .title{
+        color: black; 
+        font-family: open-regular;
+    }
+
+    .btn_back {
+        position: absolute;
+        left: 16px;
+        width: 35px;
+    }
+    .red_lbl{
+        color: black; 
+        font-family: open-regular;
+    }
+    .chat_lbl{
+        position: absolute;
+        right: 16px;
+    }
+}
+.main_content_div{
+    width: 100%;
+    background: #FAFAFA;
+    // padding-left: 16px;
+    // padding-right: 16px;
+
+    .header_div{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        font-family: open-regular;
+        
+
+        .red_chat{
+            color: var(--ion-color-main);
+            font-size: 20px;
+        }
+        .btn_back {
+            position: absolute;
+            left: 16px;
+        }
+        .chat_lbl{
+            position: absolute;
+            right: 16px;
+        }
+    }
+
+    .question_div{
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 25px;
+        .head_lbl{
+            font-size: 16px;
+            font-family: open-bold;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .list_div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 50px;
+            align-items: center;
+            border-bottom: 1px solid #E8E8E8;
+        }
+        .red_lbl{
+            color: var(--ion-color-main);
+        }  
+        .chips{
+            width: 100%;
+            display:  flex;
+            flex-wrap: wrap;
+            flex-direction:  row;
+        
+            .chip_item{
+                margin-right: 10px;
+                background-color: white;
+                border-radius: 25px;
+                padding: 10px;
+                padding-left: 15px;
+                padding-right: 15px;
+                box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+                margin-bottom: 10px;
+            }
+            .chip_item_active{
+                background: var(--ion-color-main);
+                color: white;
+            }   
+        }
+
+        ion-range{
+            --bar-background : #E8E8E8;
+            --bar-background-active : var(--ion-color-main);
+            --knob-background: var(--ion-color-main);
+            --bar-height: 5px;
+            --knob-size: 18px;
+            --knob-border-radius: 50%;
+            --knob-box-shadow: 0px 0px 0px 3px #fff;
+        }
+    }
+
+    .red_btn{
+        --background : var(--ion-color-main);
+        height: 40px;
+        --background-activated : var(--ion-color-main);
+        margin-top: 30px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

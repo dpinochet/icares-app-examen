@@ -1,0 +1,32 @@
+<ion-content>
+  <div class="main_content_div">
+    <div class="upper_div" [class.ios_test]="plt == 'ios'">
+      <img src="assets/imgs/back_btn.png" style="width: 20px;" (click)="goBack()">
+      <img src="assets/imgs/examen.png" class="scooter">
+      <ion-label class="round_lbl">Exámen {{nombreExamen}}</ion-label>
+    </div>
+    <div class="lower_div">
+      <div class="heading_div">
+        <ion-label class="heading_lbl">Seleccionar Órden Exámen:</ion-label>
+         </div>
+
+    
+
+      <div class="card_div">
+        <div class="card">
+          <div class="desc_div">
+            <ion-label class="product_name">Ingrese número de Orden:</ion-label>
+            <ion-input type="number" class="ip" [(ngModel)]="idOrden" placeholder="Ej: 102"></ion-input>
+
+          </div>
+         
+        </div>
+      </div>
+
+      <ion-button (click)="consultaExamen()" expand="full" shape="round" class="red_btn">
+        Buscar
+      </ion-button>
+
+    </div>
+  </div>
+</ion-content>

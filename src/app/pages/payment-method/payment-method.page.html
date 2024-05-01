@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+      
+      <ion-buttons slot="start" class="btn_back">
+        <ion-button (click)="goBack()">
+          <img src="assets/imgs/back2.png">
+        </ion-button>
+      </ion-buttons>
+      <ion-label class="title">Payment Methods</ion-label>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    
+    <div class="button_div">
+      <ion-button slot="end" size="small" class="add_btn" (click)="goToLogin()">
+        ADD +
+      </ion-button>
+    </div>
+
+    <div class="list_div">
+      <div class="first_div">
+        <img src="assets/imgs/visa_card.png" class="card_image">
+      </div>
+      <div class="second_div">
+        <ion-label class="name_lbl">Personal</ion-label>
+        <ion-label class="small_lbl">XXXX XXXX XXXX 4242</ion-label>
+      </div>
+
+      <div class="action_div" *ngIf="id == 1">
+        <div class="edit">Edit</div>
+        <div class="delete">Delete</div>
+      </div>
+
+      <ion-buttons slot="end" class="btn">
+        <ion-button (click)="clickMenu(1)">
+          <img src="assets/imgs/menu3.png" class="menu_btn">
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <div class="list_div">
+      <div class="first_div">
+        <img src="assets/imgs/mastercard.png" class="card_image">
+      </div>
+      <div class="second_div">
+        <ion-label class="name_lbl">Personal</ion-label>
+        <ion-label class="small_lbl">XXXX XXXX XXXX 4242</ion-label>
+      </div>
+
+      <div class="action_div" *ngIf="id == 2">
+        <div class="edit">Edit</div>
+        <div class="delete">Delete</div>
+      </div>
+
+      <ion-buttons slot="end" class="btn">
+        <ion-button (click)="clickMenu(2)">
+          <img src="assets/imgs/menu3.png" class="menu_btn">
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+  </div>  
+</ion-content>

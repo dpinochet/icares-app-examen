@@ -1,0 +1,57 @@
+.ios_test{
+    padding-top: 40px !important;
+    background: #FAFAFA;
+}
+.main_content_div{
+    width: 100%;
+    .profile_div{
+        background: #FAFAFA;
+        height: 200px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: row;
+        padding-left: 20px;
+        padding-right: 20px;
+        .first{
+            width: 150px;
+            .user_image{
+                height: 100px;
+                width: 100px;
+                background-position: center;
+                background-size: cover;
+                border-radius: 100%;
+                background-repeat: no-repeat;
+            }
+        }
+        .second{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            margin-left: 20px;
+            .bold_lbl{
+                font-family: open-bold;
+                font-size: 16px;
+            }
+            .small_lbl{
+                font-family: open-regular;
+                color: var(--ion-color-light);
+                font-size: 12px;
+            }
+        }
+    }
+
+    .question_div{
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 25px;
+        .list_div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 50px;
+            align-items: center;
+            border-bottom: 1px solid #E8E8E8;
+        }
+    }
+}

@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+      
+      <ion-buttons slot="start" class="btn_back">
+        <ion-button (click)="goBack()">
+          <img src="assets/imgs/back2.png">
+        </ion-button>
+      </ion-buttons>
+      <ion-label class="title">Check Out</ion-label>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div" [class.ios_test]="plt == 'ios'">
+
+    <!-- <div class="header_div">
+      <img src="assets/imgs/back2.png" style="width: 20px;" class="btn_back" (click)="goBack()">
+      <ion-label>Check Out</ion-label>
+    </div> -->
+
+    <div class="content_div">
+      <ion-label class="small_lbl">Delivery Address</ion-label>
+      <div class="address_div">
+        <ion-label class="address_lbl">123 York StBrooklyn, Ny 11201, USA</ion-label>
+        <ion-label class="red_lbl">Change</ion-label>
+      </div>
+
+      <div class="payment_div">
+        <ion-label class="small_lbl">Payment Method</ion-label>
+        <ion-label class="red_lbl">Add +</ion-label>
+      </div>
+
+      <div class="payment_method">
+        <div class="list_item" (click)="choosePaymentMethod(1)">
+          <img src="assets/imgs/visa.png" style="width: 25px;height: 30px">
+          <ion-label style="margin-left: 10px;">**** **** **** 4242</ion-label>
+          <img src="assets/imgs/verified.png" class="right_img" style="width: 25px;height: 25px;" *ngIf="id == 1">          
+        </div>
+
+        <div class="list_item" (click)="choosePaymentMethod(2)">
+          <img src="assets/imgs/paypal.png" style="width: 25px;height: 30px">
+          <ion-label style="margin-left: 10px;">jonhdoe@gmail.com</ion-label>
+          <img src="assets/imgs/verified.png" class="right_img" style="width: 25px;height: 25px;" *ngIf="id == 2">          
+        </div>
+      </div>
+
+      <div class="coupon_div">
+        <ion-label class="small_lbl">Enter Coupon</ion-label> 
+        <ion-input type="text" placeholder="HUNGRY10"></ion-input>
+      </div>
+
+      <div class="summary_div">
+        <ion-label class="head">Summary</ion-label>
+
+        <div class="summary_sub">
+          <ion-label>Sub Total</ion-label>
+          <ion-label class="price">$64.00</ion-label>
+        </div>
+
+        <div class="summary_sub">
+          <ion-label>Delivery Cost</ion-label>
+          <ion-label class="price">Free</ion-label>
+        </div>
+
+        <div class="summary_sub">
+          <ion-label>Discount</ion-label>
+          <ion-label class="price">- $6.4</ion-label>
+        </div>
+       
+      </div>
+
+      <div class="address_div" style="border-bottom: none;margin-top: 15px">
+        <ion-label>Total</ion-label>
+        <ion-label class="red_lbl2">$57.60</ion-label>
+      </div>
+
+      <ion-button (click)="goToSendOrder()" expand="full" shape="round" class="red_btn">Send Order</ion-button>
+
+    </div>
+  </div>
+</ion-content>

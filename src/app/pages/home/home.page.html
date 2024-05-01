@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="div_searchbar">
+      <ion-searchbar animated="true" mode="ios" placeholder="Search Food" (ionChange)="onSearchChange($event)"
+        [debounce]="250" class="search_bar"></ion-searchbar>
+      <img src="assets/imgs/menu.png" class="menu_icon">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div" [class.ios_test]="plt == 'ios'">
+    <!-- <div class="div_searchbar">
+      <ion-searchbar animated="true" mode="ios" placeholder="Search Food" (ionChange)="onSearchChange($event)" [debounce]="250" class="search_bar"></ion-searchbar>
+      <img src="assets/imgs/menu.png" class="menu_icon">
+    </div> -->
+
+    <div class="heading">
+      <ion-label class="heading_lbl">Popular Choices</ion-label>
+      <ion-label class="small_lbl">Show All</ion-label>
+    </div>
+
+    <div class="slider_div">
+      <ion-slides [options]="slideOpts">
+
+        <ion-slide *ngFor="let item of [1,2,3]">
+          <div class="card" (click)="openMenu()">
+            <div class="back_image" [style.backgroundImage]="'url(assets/imgs/image1.jpg)'">
+              <ion-label class="time_lbl">20 - 30 mins</ion-label>
+            </div>
+            <ion-label class="heading_lbl">Hollywood Starz Cafe</ion-label>
+            <div class="price_rating">
+              <ion-label class="small_lbl">Cafe - Western Food - $$</ion-label>
+              <ion-icon name="star" class="rating"></ion-icon>
+              <ion-label class="red_lbl">4.9</ion-label>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="card_div">
+      <div class="heading">
+        <ion-label class="heading_lbl">New Restaurants</ion-label>
+        <ion-label class="small_lbl" (click)="openMenu()">Show All</ion-label>
+      </div>
+
+      <div class="card" *ngFor="let item of [1,2,3,4]">
+        <div class="image_div" (click)="openMenu()" [style.backgroundImage]="'url(assets/imgs/image2.jpg)'"></div>
+        <div class="desc_div" (click)="openMenu()">
+          <ion-label class="heading_lbl">Super Good Cafe</ion-label>
+          <ion-label class="small_lbl">Cafe - Western Food - $$</ion-label>
+          <ion-icon name="star" class="rating"></ion-icon>
+          <ion-label class="red_lbl"><span class="red_lbl">4.9</span> (124 rating)</ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<app-customtabs></app-customtabs>

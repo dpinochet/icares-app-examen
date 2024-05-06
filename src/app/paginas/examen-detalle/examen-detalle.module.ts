@@ -7,11 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { ExamenDetallePageRoutingModule } from './examen-detalle-routing.module';
 
 import { ExamenDetallePage } from './examen-detalle.page';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule,SignaturePadModule,
     IonicModule,
     ExamenDetallePageRoutingModule
   ],

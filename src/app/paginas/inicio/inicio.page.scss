@@ -1,6 +1,21 @@
 ::ng-deep.swiper-pagination-bullet-active {
     background: var(--ion-color-main) !important;
 }
+
+.div_slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Alinea el texto al centro */
+  }
+  
+  .slider_img {
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    max-height: 100%; /* Asegura que la imagen no exceda la altura del contenedor */
+  }
+
+  
 .main_content_div{
     width: 100%;
     padding: 20px;

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { InicioPageRoutingModule } from './inicio-routing.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { InicioPage } from './inicio.page';
 
@@ -15,6 +16,7 @@ import { InicioPage } from './inicio.page';
     IonicModule,
     InicioPageRoutingModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [InicioPage]
 })
 export class InicioPageModule {}

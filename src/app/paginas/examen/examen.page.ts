@@ -12,8 +12,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class ExamenPage implements OnInit {
   examen: any; // Ajusta el tipo de dato según la respuesta esperada del endpoint
-  idOrden:number;
-  nombreExamen:string;
+  idOrden:number=0;
+  nombreExamen:string="";
   plt;
   slideOpts = {
     slidesPerView: 1.2,
@@ -36,11 +36,14 @@ export class ExamenPage implements OnInit {
   ngOnInit() {
   }
 
-  async mostrarAlerta(mensaje: string, titulo?: string) {
+  
+
+  async mostrarAlerta(mensaje: string, titulo?: string, botones?:any) {
     const alerta = await this.alertController.create({
       header: titulo || 'Alerta',
       message: mensaje,
-      buttons: ['OK'],
+      cssClass: '',
+      buttons: botones || ['Aceptar'],
     });
 
     await alerta.present();
@@ -50,7 +53,7 @@ export class ExamenPage implements OnInit {
   openMenu() {
     this.router.navigate(['product-list']);
   }
-  onSearchChange(event) {
+  onSearchChange(event:any) {
 
   }
 
@@ -61,14 +64,26 @@ export class ExamenPage implements OnInit {
 
   consultaExamen() {
     const examenId = this.idOrden; 
-    this.apiService.getExamById(examenId)
-         .then(exam => {
-            console.log(exam);
-         })
-         .catch(error => {
-            this.mostrarAlerta('Error al cargar el examen', 'Error');
-            console.error(error);
-         });
+    if (!examenId) {
+      this.mostrarAlerta('Debe ingresar número Orden de Exámen', 'Falta Información');
+    }
+    else {
+      this.alertaService.inicioLoading();
+      this.apiService.getExamById(examenId)
+           .then(exam => {
+            this.alertaService.cerrarLoading();
+              console.log(exam);
+              localStorage.removeItem("examen");
+              localStorage.setItem("examen", JSON.stringify(exam.document));
+              this.router.navigate(["/examen-detalle"]);
+           })
+           .catch(error => {
+            this.alertaService.cerrarLoading();
+              this.mostrarAlerta('El exámen Nº ' + this.idOrden, 'Sin Información');
+              console.error(error);
+           });
+    }
+   
   }
   
 

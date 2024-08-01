@@ -72,3 +72,35 @@ ion-modal.modalorder {
 .sc-ion-modal-md-h{
     align-items: flex-end;
 }
+
+
+body {
+    background-color: #ffffff;
+    color: #000000; /* Ajustar el color del texto si es necesario */
+    --background: #ffffff;
+  }
+  
+  /* Asegurarse de que las páginas de Ionic tengan un fondo blanco */
+  ion-content {
+    --background: #ffffff;
+  }
+
+  
+  
+  /* Ajuste específico para inputs y textareas */
+  ion-input, ion-textarea {
+    --background: #ffffff;
+    --color: #000000;
+  }
+  
+  /* Asegurarse de que las etiquetas tengan el color correcto */
+  ion-label {
+    --color: #000000;
+  }
+
+  /* Establece el fondo blanco globalmente para los ion-item */
+ion-item {
+    --ion-item-background: #ffffff; /* Fondo blanco */
+    --ion-background-color: #ffffff; /* Fondo de elementos hijos, si aplica */
+    --ion-item-color: #000000; /* Texto negro */
+  }

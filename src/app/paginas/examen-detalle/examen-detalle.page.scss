@@ -227,3 +227,40 @@
     color: #fff !important; /* Cambia el color del texto e íconos */
     background-color: #EC5C5C;
   }
+
+
+  /* examen-detalle.page.scss */
+
+.card_div {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+    padding: 16px; /* Espaciado interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para resaltar */
+  }
+  
+  /* Ajustes específicos para textos dentro de card_div, si es necesario */
+  .card_div ion-label, .card_div ion-textarea, .card_div ion-input {
+    color: #000000; /* Asegura que los textos y entradas también sean negros */
+  }
+  
+  /* Si tienes otras etiquetas o elementos que necesiten ajustes, agréguelos aquí */
+  
+
+
+  /* examen-detalle.page.scss */
+
+/* Ajuste específico para el ion-card dentro de ng-template #noPhotos */
+ ion-card {
+    --ion-background-color: #ffffff; /* Fondo blanco para el ion-card */
+    --ion-card-background: #ffffff; /* Asegura que el fondo del card sea blanco */
+    color: #000000; /* Texto negro */
+  }
+  
+  /* Si el texto o íconos dentro del card no son visibles, asegúrate de especificar su color */
+   ion-card-content, 
+   ion-icon,
+   p {
+    color: #000000; /* Texto negro para contraste */
+  }
+  

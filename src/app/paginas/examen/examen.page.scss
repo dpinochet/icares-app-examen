@@ -175,3 +175,11 @@
     height: 40px;
     background: white;
 }
+
+
+/* Asegúrate de que el archivo SCSS esté vinculado al componente */
+.card_div .ip {
+    --color: #000000; /* Texto en negro */
+    --placeholder-color: #888888; /* Placeholder en gris oscuro, opcional */
+  }
+  

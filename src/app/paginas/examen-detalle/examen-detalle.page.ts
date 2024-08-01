@@ -49,7 +49,7 @@ export class ExamenDetallePage implements OnInit {
   examTypes: Array<{ id: string, nombre: string }> = []; // Variable para almacenar la lista de tipos de exámenes.
   selectedExamType: string = ""; // Variable para almacenar el valor seleccionado del combo.
 
-  profesionales: Array<{ rut: string, nombre: string }> = [];
+  profesionales: Array<{ id: string, nombreCompleto: string }> = [];
   profesionalSeleccionado: string = "";
 
 
@@ -114,8 +114,78 @@ export class ExamenDetallePage implements OnInit {
     this.navCtrl.back();
   }
 
-  enviarExamen() {
-    
+  async enviarExamen() {
+    // Recolección de datos para el examen
+    if (this.examen.comentario == "") {
+      this.examen.comentario = "Sin observaciones";
+    }
+    const examenPayload = {
+      fecha: this.examen.fecha,
+      id_paciente: this.examen.id_paciente,
+      id_profesional: this.profesionalSeleccionado,
+      id_tipo: this.selectedExamType,
+      comentario: this.examen.comentario,
+      codigo: this.examen.codigo,
+      presc: this.examen.presc,
+      observaciones: this.examen.observaciones,
+      resultados: this.examen.resultados,
+      firma: this.signaturePad.toDataURL('image/png'), // Firma en formato base64
+      id: this.examen.id  // ID del examen a actualizar
+    };
+  
+    try {
+      const response = await this.apiService.updateExamen(examenPayload);
+      console.log('Examen actualizado exitosamente:', response);
+      this.alertaService.mostrarAlerta('Examen actualizado exitosamente');
+      
+      // Después de actualizar el examen, agregar el archivo
+      const archivoPayload = {
+        fecha: this.examen.fecha,
+        id_examen: this.examen.id,
+        descripcion: "Archivo asociado al examen", // Ajustar descripción según sea necesario
+        archivo: "archivoapp", // Establecer texto específico "archivoapp"
+        id_tipo: this.selectedExamType,
+        id_profesional: this.profesionalSeleccionado,
+        estado: 2 // Estado predefinido como 2
+      };
+  
+      await this.apiService.createExamenArchivo(archivoPayload);
+      console.log('Archivo del examen registrado exitosamente');
+  
+      // Limpiar el formulario
+      this.limpiarFormulario();
+  
+      // Redirigir a la ruta /examen
+      this.navCtrl.navigateRoot('/examen');
+  
+    } catch (error) {
+      console.error('Error al procesar el examen:', error);
+      this.alertaService.mostrarAlerta('Error al procesar el examen');
+    }
   }
+  
+  
+ 
+
+  limpiarFormulario() {
+    this.examen = {
+      fecha: '',
+      id_paciente: '',
+      id_profesional: '',
+      id_tipo: '',
+      comentario: '',
+      codigo: '',
+      archivo: '',
+      presc: '',
+      observaciones: '',
+      resultados: '',
+      firma: ''
+    };
+    this.profesionalSeleccionado = '';
+    this.selectedExamType = '';
+    this.signaturePad.clear();  // Limpiar el campo de firma
+    this.photos = [];  // Limpiar fotos si es necesario
+  }
+
 
 }

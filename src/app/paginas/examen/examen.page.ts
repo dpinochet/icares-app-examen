@@ -12,7 +12,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class ExamenPage implements OnInit {
   examen: any; // Ajusta el tipo de dato según la respuesta esperada del endpoint
-  idOrden:number=0;
+  idOrden:any="";
   nombreExamen:string="";
   plt;
   slideOpts = {
@@ -66,25 +66,30 @@ export class ExamenPage implements OnInit {
     const examenId = this.idOrden; 
     if (!examenId) {
       this.mostrarAlerta('Debe ingresar número Orden de Exámen', 'Falta Información');
-    }
-    else {
+    } else {
       this.alertaService.inicioLoading();
       this.apiService.getExamById(examenId)
            .then(exam => {
             this.alertaService.cerrarLoading();
-              console.log(exam);
+            console.log(exam);
+  
+            if (exam && exam.document && exam.document.firma) {
+              this.mostrarAlerta('El examen ya ha sido enviado a la Intranet', 'Examen Enviado');
+            } else {
               localStorage.removeItem("examen");
               localStorage.setItem("examen", JSON.stringify(exam.document));
               this.router.navigate(["/examen-detalle"]);
+            }
            })
            .catch(error => {
             this.alertaService.cerrarLoading();
-              this.mostrarAlerta('El exámen Nº ' + this.idOrden, 'Sin Información');
-              console.error(error);
+            this.mostrarAlerta('El exámen Nº ' + this.idOrden, 'Sin Información');
+            console.error(error);
            });
     }
-   
   }
+   
+  
   
 
 

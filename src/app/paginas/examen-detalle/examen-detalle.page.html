@@ -2,170 +2,145 @@
   <div class="main_content_div">
     <div class="upper_div" [class.ios_test]="'ios'">
       <img src="assets/imgs/back_btn.png" style="width: 20px;" (click)="goBack()">
-      
     </div>
     <div class="lower_div">
       <div class="heading_div">
         <ion-label class="heading_lbl">Ficha Exámen Nº {{examen.id}}:</ion-label>
-         </div>
+      </div>
 
-    
-         <div class="card_div">
-          <ion-label class="heading_lbl">Paciente:</ion-label>
-          <div class="card">
-            <div class="desc_div">
-              <ion-label class="product_name">Rut:</ion-label>
-              <ion-label class="addons">{{examen.rut }}</ion-label>
-            </div>
-            <div class="price_div">
-              <ion-label class="price">{{examen.nombre + " " + examen.apellido}}</ion-label>
-              
-            </div>
+      <div class="card_div">
+        <ion-label class="heading_lbl">Paciente:</ion-label>
+        <div class="card">
+          <div class="desc_div">
+            <ion-label class="product_name">Rut:</ion-label>
+            <ion-label class="addons">{{examen.rut}}</ion-label>
           </div>
-          <div class="card">
-            <div class="desc_div">
-              <ion-label class="product_name">Teléfono:</ion-label>
-              <ion-label class="addons">{{examen.telefono }}</ion-label>
-            </div>
-            <div class="price_div">
-              <ion-label class="price">{{examen.email}}</ion-label>
-              
+          <div class="price_div">
+            <ion-label class="price">{{examen.nombre + " " + examen.apellido}}</ion-label>
+          </div>
+        </div>
+        <div class="card">
+          <div class="desc_div">
+            <ion-label class="product_name">Teléfono:</ion-label>
+            <ion-label class="addons">{{examen.telefono}}</ion-label>
+          </div>
+          <div class="price_div">
+            <ion-label class="price">{{examen.email}}</ion-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card_div">
+        <ion-label class="heading_lbl">Exámen:</ion-label>
+        <div class="card">
+          <div class="desc_div">
+            <div class="product_list">
+              <div class="list_item">
+                <ion-label>Fecha</ion-label>
+                <ion-input [(ngModel)]="examen.fecha" placeholder="Escriba aquí..."></ion-input>
+              </div>
+              <div class="list_item">
+                <ion-label>Comentarios</ion-label>
+                <ion-label class="price">{{ examen.comentario }}</ion-label>
+              </div>
+              <div class="list_item">
+                <ion-label>Tipo Exámen</ion-label>
+                <ion-select class="price" [(ngModel)]="selectedExamType">
+                  <ion-select-option *ngFor="let type of examTypes" [value]="type.id">
+                    {{ type.nombre }}
+                  </ion-select-option>
+                </ion-select>
+              </div>
+              <div class="list_item">
+                <ion-label>Profesional</ion-label>
+                <ion-select class="price" [(ngModel)]="profesionalSeleccionado">
+                  <ion-select-option *ngFor="let profesional of profesionales" [value]="profesional.id">
+                    {{ profesional.nombreCompleto }}
+                  </ion-select-option>
+                </ion-select>
+              </div>
             </div>
           </div>
         </div>
-     
+      </div>
 
-        <div class="card_div">
-          <ion-label class="heading_lbl">Exámen:</ion-label>
-          <div class="card">
-            <div class="desc_div">
-              <div class="product_list">
-                <div class="list_item">
-                  <ion-label>Fecha</ion-label>
-                  <ion-label class="price">{{ examen.fecha }}</ion-label>
-                </div>
-                <div class="list_item">
-                  <ion-label>Comentarios</ion-label>
-                  <ion-label class="price">{{ examen.comentario }}</ion-label>
-                </div>
-
-                <div class="list_item">
-                  <ion-label>Tipo Exámen</ion-label>
-                  <ion-select class="price" [(ngModel)]="selectedExamType">
-                    <ion-select-option *ngFor="let type of examTypes" [value]="type.id">
-                       {{ type.nombre }}
-                    </ion-select-option>
-                 </ion-select>
-                </div>
-
-
-                <div class="list_item">
-                  <ion-label>Profesional</ion-label>
-                  <ion-select class="price" [(ngModel)]="profesionalSeleccionado">
-                    <ion-select-option *ngFor="let type of profesionales" [value]="type.rut">
-                       {{ type.nombre }}
-                    </ion-select-option>
-                 </ion-select>
-                </div>
-
-
-            </div>
-          </div>
-          </div>
-        
-        </div>
-
-
-        <div class="card_div">
-          <div class="card">
-            <div class="desc_div">
-              <div class="product_list">
-                <ion-item>
-                  <ion-label class="list_item" position="stacked">Descripción</ion-label>
-                  <ion-textarea placeholder="Escriba aquí..."></ion-textarea>
-                </ion-item>
+      <div class="card_div">
+        <div class="card">
+          <div class="desc_div">
+            <div class="product_list">
+              <ion-item>
+                <ion-label class="list_item" position="stacked">Descripción</ion-label>
+                <ion-textarea [(ngModel)]="examen.descripcion" placeholder="Escriba aquí..."></ion-textarea>
+              </ion-item>
             </div>
 
             <div class="product_list">
               <ion-item>
                 <ion-label class="list_item" position="stacked">Observaciones</ion-label>
-                <ion-textarea placeholder="Escriba aquí..."></ion-textarea>
+                <ion-textarea [(ngModel)]="examen.observaciones" placeholder="Escriba aquí..."></ion-textarea>
               </ion-item>
             </div>
-
 
             <div class="product_list">
               <ion-item>
                 <ion-label class="list_item" position="stacked">Resultados</ion-label>
-                <ion-textarea placeholder="Escriba aquí..."></ion-textarea>
+                <ion-textarea [(ngModel)]="examen.resultados" placeholder="Escriba aquí..."></ion-textarea>
               </ion-item>
             </div>
-
-
           </div>
-          </div>
-        
         </div>
+      </div>
 
-
-
-        <div class="card_div">
-          <div class="card">
-            <div class="desc_div">
-              <ion-label class="heading_lbl">Imágenes:</ion-label>
-              
-
-              <div class="center-button">
-                <ion-button fill="outline" class="boton_foto" (click)="takePhoto()" >
-                  <ion-icon name="camera-outline" style="color: #EC5C5C !important" slot="start"></ion-icon>
-                  Tomar Foto
-                </ion-button>
-              </div>
-
-
-              <ng-container *ngIf="photos.length > 0; else noPhotos">
-                <ion-list>
-                  <ion-item *ngFor="let photo of photos; let i = index">
-                    <ion-card>
-                      <ion-card-content>
-                        <img [src]="photo" style="width:100%; height:auto;">
-                        <ion-button expand="full" color="danger" (click)="deletePhoto(i)">Eliminar</ion-button>
-                      </ion-card-content>
-                    </ion-card>
-                  </ion-item>
-                </ion-list>
-              </ng-container>
-            
-
-              <ng-template #noPhotos>
-                <ion-card>
-                  <ion-card-content>
-                    <ion-icon name="image-outline" size="large"></ion-icon>
-                    <p>No hay fotos disponibles. Usa el botón para tomar una nueva.</p>
-                  </ion-card-content>
-                </ion-card>
-              </ng-template>
-          </div>
-          </div>
-        
-        </div>
-
-        <div class="card_div">
-          <div class="card">
-            <div class="desc_div">
-              <ion-label class="heading_lbl">Firma:</ion-label>
-              <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
-
+      <div class="card_div">
+        <div class="card">
+          <div class="desc_div">
+            <ion-label class="heading_lbl">Imágenes:</ion-label>
+            <div class="center-button">
+              <ion-button fill="outline" class="boton_foto" (click)="takePhoto()">
+                <ion-icon name="camera-outline" style="color: #EC5C5C !important" slot="start"></ion-icon>
+                Tomar Foto
+              </ion-button>
             </div>
+
+            <ng-container *ngIf="photos.length > 0; else noPhotos">
+              <ion-list>
+                <ion-item *ngFor="let photo of photos; let i = index">
+                  <ion-card>
+                    <ion-card-content>
+                      <img [src]="photo" style="width:100%; height:auto;">
+                      <ion-button expand="full" color="danger" (click)="deletePhoto(i)">Eliminar</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </ion-list>
+            </ng-container>
+
+            <ng-template #noPhotos>
+              <ion-card>
+                <ion-card-content>
+                  <ion-icon name="image-outline" size="large"></ion-icon>
+                  <p>No hay fotos disponibles. Usa el botón para tomar una nueva.</p>
+                </ion-card-content>
+              </ion-card>
+            </ng-template>
           </div>
         </div>
+      </div>
+
+      <div class="card_div">
+        <div class="card">
+          <div class="desc_div">
+            <ion-label class="heading_lbl">Firma:</ion-label>
+            <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+          </div>
+        </div>
+      </div>
 
       <ion-button (click)="enviarExamen()" expand="full" shape="round" class="red_btn">
         Guardar y Enviar
       </ion-button>
 
       <div style="height: 80px;"></div>
-
     </div>
   </div>
 </ion-content>

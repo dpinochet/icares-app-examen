@@ -73,13 +73,11 @@ export class ExamenPage implements OnInit {
             this.alertaService.cerrarLoading();
             console.log(exam);
   
-            if (exam && exam.document && exam.document.firma) {
-              this.mostrarAlerta('El examen ya ha sido enviado a la Intranet', 'Examen Enviado');
-            } else {
+            
               localStorage.removeItem("examen");
               localStorage.setItem("examen", JSON.stringify(exam.document));
               this.router.navigate(["/examen-detalle"]);
-            }
+            
            })
            .catch(error => {
             this.alertaService.cerrarLoading();

@@ -147,5 +147,48 @@ public async updateExamen(examenData: any): Promise<any> {
      .toPromise();
  }
  
+
+
+ public async uploadImage(imageData: string): Promise<any> {
+   if (!this.token) {
+     await this.getToken();
+   }
+ 
+   const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+ 
+   const formData = new FormData();
+   const blob = this.dataURItoBlob(imageData);
+   formData.append('image', blob, 'image.jpg'); // Ajusta el nombre del archivo según sea necesario
+ 
+   return this.http.post<any>(`${this.apiUrl}/files/uploadimage.php`, formData, { headers })
+     .toPromise();
+ }
+ 
+ // Helper function to convert base64/URLEncoded data component to raw binary data held in a string
+ private dataURItoBlob(dataURI: string) {
+   const byteString = atob(dataURI.split(',')[1]);
+   const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+   const ab = new ArrayBuffer(byteString.length);
+   const ia = new Uint8Array(ab);
+   for (let i = 0; i < byteString.length; i++) {
+     ia[i] = byteString.charCodeAt(i);
+   }
+   return new Blob([ab], { type: mimeString });
+ }
+
+
+ public async createExamenImagen(imagenData: any): Promise<any> {
+   if (!this.token) {
+     await this.getToken();
+   }
+ 
+   const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
+                                    .set('Content-Type', 'application/json');
+ 
+   return this.http.post<any>(`${this.apiUrl}/examen_imagenes/create.php`, imagenData, { headers })
+     .toPromise();
+ }
+ 
+ 
    
 }

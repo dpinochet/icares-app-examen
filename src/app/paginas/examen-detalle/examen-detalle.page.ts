@@ -149,8 +149,24 @@ export class ExamenDetallePage implements OnInit {
         estado: 2 // Estado predefinido como 2
       };
   
-      await this.apiService.createExamenArchivo(archivoPayload);
-      console.log('Archivo del examen registrado exitosamente');
+      const archivoResponse = await this.apiService.createExamenArchivo(archivoPayload);
+      console.log('Archivo del examen registrado exitosamente:', archivoResponse);
+      const nuevoIdExamenArchivo = archivoResponse.document;
+  
+      // Enviar imágenes capturadas y crear registros en examen_imagenes
+      for (const photo of this.photos) {
+        const uploadResponse = await this.apiService.uploadImage(photo);
+        console.log('Imagen subida exitosamente:', uploadResponse);
+        const nuevoNombreImagen = uploadResponse.document;
+  
+        const imagenPayload = {
+          id_examen: nuevoIdExamenArchivo,
+          foto: nuevoNombreImagen
+        };
+  
+        await this.apiService.createExamenImagen(imagenPayload);
+        console.log('Registro de imagen creado exitosamente');
+      }
   
       // Limpiar el formulario
       this.limpiarFormulario();

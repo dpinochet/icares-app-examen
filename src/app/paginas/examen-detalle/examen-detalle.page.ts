@@ -5,6 +5,7 @@ import { AlertaService } from '../../servicios/alerta.service';
 import { AlertController } from '@ionic/angular';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { SignaturePad } from 'angular2-signaturepad';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-examen-detalle',
@@ -57,7 +58,8 @@ export class ExamenDetallePage implements OnInit {
     private navCtrl: NavController,
     private apiService: ApiService,
     private alertaService: AlertaService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private loadingController: LoadingController 
   ) { 
     this.examen = JSON.parse(localStorage.getItem("examen") || "");
   }
@@ -115,6 +117,12 @@ export class ExamenDetallePage implements OnInit {
   }
 
   async enviarExamen() {
+    // Mostrar el indicador de carga
+    const loading = await this.loadingController.create({
+      message: 'Procesando...',
+    });
+    await loading.present();
+  
     // Recolección de datos para el examen
     if (this.examen.comentario == "") {
       this.examen.comentario = "Sin observaciones";
@@ -134,11 +142,11 @@ export class ExamenDetallePage implements OnInit {
     };
   
     try {
-      const response = await this.apiService.updateExamen(examenPayload);
-      console.log('Examen actualizado exitosamente:', response);
-      this.alertaService.mostrarAlerta('Examen actualizado exitosamente');
+     // const response = await this.apiService.updateExamen(examenPayload);
+    //  console.log('Examen actualizado exitosamente:', response);
       
-      // Después de actualizar el examen, agregar el archivo
+      
+      // Agregar
       const archivoPayload = {
         fecha: this.examen.fecha,
         id_examen: this.examen.id,
@@ -146,8 +154,13 @@ export class ExamenDetallePage implements OnInit {
         archivo: "archivoapp", // Establecer texto específico "archivoapp"
         id_tipo: this.selectedExamType,
         id_profesional: this.profesionalSeleccionado,
-        estado: 2 // Estado predefinido como 2
+        estado: 2, // Estado predefinido como 2
+        presc: this.examen.presc,
+        observaciones: this.examen.observaciones,
+        resultados: this.examen.resultados,
+        firma: this.signaturePad.toDataURL('image/png') // Firma en formato base64
       };
+  
   
       const archivoResponse = await this.apiService.createExamenArchivo(archivoPayload);
       console.log('Archivo del examen registrado exitosamente:', archivoResponse);
@@ -173,12 +186,16 @@ export class ExamenDetallePage implements OnInit {
   
       // Redirigir a la ruta /examen
       this.navCtrl.navigateRoot('/examen');
-  
+      this.alertaService.mostrarAlerta('Examen actualizado exitosamente');
     } catch (error) {
       console.error('Error al procesar el examen:', error);
       this.alertaService.mostrarAlerta('Error al procesar el examen');
+    } finally {
+      // Ocultar el indicador de carga
+      await loading.dismiss();
     }
   }
+  
   
   
  

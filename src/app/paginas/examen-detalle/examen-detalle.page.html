@@ -35,13 +35,14 @@
         <div class="card">
           <div class="desc_div">
             <div class="product_list">
+             
               <div class="list_item">
                 <ion-label>Fecha</ion-label>
                 <ion-input [(ngModel)]="examen.fecha" placeholder="Escriba aquí..."></ion-input>
               </div>
               <div class="list_item">
                 <ion-label>Comentarios</ion-label>
-                <ion-label class="price">{{ examen.comentario }}</ion-label>
+                <ion-textarea [(ngModel)]="examen.comentario" placeholder="Escriba aquí..."></ion-textarea>
               </div>
               <div class="list_item">
                 <ion-label>Tipo Exámen</ion-label>
@@ -67,6 +68,17 @@
       <div class="card_div">
         <div class="card">
           <div class="desc_div">
+
+
+            <div class="product_list">
+              <ion-item>
+                <ion-label class="list_item" position="stacked">Prescripción</ion-label>
+                <ion-textarea [(ngModel)]="examen.presc" placeholder="Escriba aquí..."></ion-textarea>
+              </ion-item>
+            </div>
+
+
+
             <div class="product_list">
               <ion-item>
                 <ion-label class="list_item" position="stacked">Descripción</ion-label>

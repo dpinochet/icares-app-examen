@@ -143,7 +143,10 @@
         <div class="card">
           <div class="desc_div">
             <ion-label class="heading_lbl">Firma:</ion-label>
-            <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+            <canvas #signatureCanvas width="500" height="300" style="border: 1px solid #ccc;"></canvas>
+            <div class="center-button">
+              <ion-button  fill="outline" class="boton_foto" (click)="clearSignature()">Limpiar Firma</ion-button>
+            </div>
           </div>
         </div>
       </div>

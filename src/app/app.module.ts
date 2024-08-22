@@ -14,13 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { AlertaService } from './servicios/alerta.service';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { SignaturePadModule } from 'angular2-signaturepad';
 
 
 @NgModule({
   declarations: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
-  imports: [BrowserModule,SignaturePadModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },AlertaService,ApiService],
   bootstrap: [AppComponent],
 })

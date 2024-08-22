@@ -122,9 +122,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 @ionic/core/components
 
-angular2-signaturepad
-MIT
-
 ionic-loader
 
 rxjs
